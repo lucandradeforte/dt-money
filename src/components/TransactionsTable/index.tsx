@@ -1,3 +1,4 @@
+import { formatCurrency, formatDate } from "../../functions/format";
 import { useTransactions } from "../../hooks/useTransactions";
 import { Container } from "./styles";
 
@@ -20,16 +21,11 @@ export function TransactionsTable() {
             <tr key={transactions.id}>
               <td>{transactions.title}</td>
               <td className={transactions.type}>
-                {new Intl.NumberFormat("pt-BR", {
-                  style: "currency",
-                  currency: "BRL"
-                }).format(transactions.amount)}
+                {formatCurrency(transactions.amount)}
               </td>
               <td>{transactions.category}</td>
               <td>
-                {new Intl.DateTimeFormat("pt-BR").format(
-                  new Date(transactions.amount)
-                )}
+                {formatDate(new Date(transactions.amount))}
               </td>
             </tr>
           ))}
